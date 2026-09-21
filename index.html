@@ -155,6 +155,42 @@ function sendMail(e){
 .contact-actions .primary{background:#fff;color:#111}
 .contact-actions .secondary{border:1px solid rgba(255,255,255,.2);color:inherit}
 </style>
+<button id="installBtn" style="
+position:fixed;
+bottom:20px;
+right:20px;
+padding:14px 20px;
+border:none;
+border-radius:30px;
+background:#fff;
+color:#000;
+font-weight:700;
+cursor:pointer;
+z-index:9999;
+">
+📱 Download Adryvo App
+</button>
 
+<script>
+let deferredPrompt;
+const installBtn = document.getElementById("installBtn");
+
+installBtn.style.display = "none";
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = "block";
+});
+
+installBtn.addEventListener("click", async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBtn.style.display = "none";
+  }
+});
+</script>
 </body>
 </html>
