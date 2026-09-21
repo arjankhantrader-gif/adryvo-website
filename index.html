@@ -192,5 +192,12 @@ installBtn.addEventListener("click", async () => {
   }
 });
 </script>
+ <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/adryvo-website/sw.js");
+  });
+}
+ </script>
 </body>
 </html>
