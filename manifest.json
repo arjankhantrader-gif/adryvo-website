@@ -1,9 +1,21 @@
 {
   "name": "Adryvo — Creative Advertising Studio",
   "short_name": "Adryvo",
+  "description": "Adryvo — Creative Advertising Studio",
   "start_url": "/adryvo-website/",
   "display": "standalone",
   "background_color": "#09090b",
   "theme_color": "#09090b",
-  "description": "Adryvo — Creative Advertising Studio"
+  "icons": [
+    {
+      "src": "/adryvo-website/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/adryvo-website/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
