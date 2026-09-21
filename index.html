@@ -153,9 +153,34 @@ function sendMail(e){
 .contact-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .contact-actions .btn{display:inline-block;padding:13px 20px;border-radius:999px;text-decoration:none;font-weight:700}
 .contact-actions .primary{background:#fff;color:#111}
+.contact-actions .seconda<ry{border:1px solid rgba(255,255,255,.2);color:inherit}
+</style>
+<style>
+.contact-section{padding:72px 20px 90px;max-width:1100px;margin:auto}
+.contact-card{border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:48px 28px;background:rgba(255,255,255,.035);text-align:center}
+.contact-card h2{font-size:clamp(32px,6vw,60px);line-height:1.05;margin:10px 0 16px}
+.contact-card p:not(.eyebrow){opacity:.72;max-width:620px;margin:0 auto 26px}
+.contact-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.contact-actions .btn{display:inline-block;padding:13px 20px;border-radius:999px;text-decoration:none;font-weight:700}
+.contact-actions .primary{background:#fff;color:#111}
 .contact-actions .secondary{border:1px solid rgba(255,255,255,.2);color:inherit}
 </style>
-<button id="installBtn" style="
+
+<style>
+.contact-section{padding:72px 20px 90px;max-width:1100px;margin:auto}
+.contact-card{border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:48px 28px;background:rgba(255,255,255,.035);text-align:center}
+.contact-card h2{font-size:clamp(32px,6vw,60px);line-height:1.05;margin:10px 0 16px}
+.contact-card p:not(.eyebrow){opacity:.72;max-width:620px;margin:0 auto 26px}
+.contact-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.contact-actions .btn{display:inline-block;padding:13px 20px;border-radius:999px;text-decoration:none;font-weight:700}
+.contact-actions .primary{background:#fff;color:#111}
+.contact-actions .secondary{border:1px solid rgba(255,255,255,.2);color:inherit}
+</style>
+
+<a
+href="https://bucket.appilix.com/app-apk-835a7dd8464f448d87cff8e5a0db5f47-1790007583.apk"
+download
+style="
 position:fixed;
 bottom:20px;
 right:20px;
@@ -167,40 +192,11 @@ color:#000;
 font-weight:700;
 cursor:pointer;
 z-index:9999;
+text-decoration:none;
 ">
 📱 Download Adryvo App
-</button>
+</a>
 
-<script>
-let deferredPrompt;
-const installBtn = document.getElementById("installBtn");
-
-installBtn.style.display = "block";
-
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = "block";
-});
-
-installBtn.addEventListener("click", async () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-
-    const result = await deferredPrompt.userChoice;
-
-    if (result.outcome === "accepted") {
-      installBtn.style.display = "none";
-    }
-
-    deferredPrompt = null;
-  } else {
-    alert(
-      "Adryvo install karne ke liye Chrome ke ⋮ menu ko open karo aur 'Install app' ya 'Add to Home screen' select karo."
-    );
-  }
-});
-</script>
  <script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
