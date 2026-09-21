@@ -186,9 +186,18 @@ window.addEventListener("beforeinstallprompt", (e) => {
 installBtn.addEventListener("click", async () => {
   if (deferredPrompt) {
     deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
+
+    const result = await deferredPrompt.userChoice;
+
+    if (result.outcome === "accepted") {
+      installBtn.style.display = "none";
+    }
+
     deferredPrompt = null;
-    installBtn.style.display = "none";
+  } else {
+    alert(
+      "Adryvo install karne ke liye Chrome ke ⋮ menu ko open karo aur 'Install app' ya 'Add to Home screen' select karo."
+    );
   }
 });
 </script>
