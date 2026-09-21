@@ -1,0 +1,9 @@
+{
+  "name": "Adryvo — Creative Advertising Studio",
+  "short_name": "Adryvo",
+  "start_url": "/adryvo-website/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "description": "Adryvo — Creative Advertising Studio"
+}
