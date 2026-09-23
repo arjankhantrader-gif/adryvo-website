@@ -1,209 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Adryvo — Creative advertising, campaigns and brand content.">
- <link rel="manifest" href="/adryvo-website/manifest.json">
-<title>Adryvo — Where Creativity Meets Brands</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
-:root{--bg:#08090b;--card:#111318;--text:#f5f7fa;--muted:#9ca3af;--line:#24272d;--accent:#d9ff4f}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-a{text-decoration:none;color:inherit}
-.container{width:min(1120px,92%);margin:auto}
-nav{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(8,9,11,.75);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06)}
-.navin{height:74px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:'Space Grotesk';font-size:25px;font-weight:700;letter-spacing:-1px}
-.logo span{color:var(--accent)}
-.links{display:flex;gap:28px;color:#c7cbd1;font-size:14px}
-.links a:hover{color:white}
-.menu{display:none;background:none;border:0;color:white;font-size:26px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 19px;border-radius:999px;background:var(--accent);color:#090a0b;font-weight:700;font-size:14px;transition:.25s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(217,255,79,.12)}
-.btn.ghost{background:transparent;color:white;border:1px solid var(--line)}
-.hero{min-height:100vh;display:flex;align-items:center;padding:130px 0 80px;position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(217,255,79,.10),transparent 68%);right:-180px;top:80px;filter:blur(10px)}
-.kicker{color:var(--accent);font-size:13px;text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:22px}
-h1{font-family:'Space Grotesk';font-size:clamp(52px,8vw,100px);line-height:.94;letter-spacing:-5px;max-width:850px}
-h1 em{font-style:normal;color:var(--muted)}
-.hero p{max-width:620px;color:#aeb4bd;font-size:18px;margin:28px 0 34px}
-.actions{display:flex;gap:12px;flex-wrap:wrap}
-section{padding:105px 0}
-.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:42px}
-.eyebrow{color:var(--accent);font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700}
-h2{font-family:'Space Grotesk';font-size:clamp(34px,5vw,58px);letter-spacing:-2.5px;line-height:1}
-.section-head p{max-width:390px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;transition:.3s}
-.card:hover{transform:translateY(-5px);border-color:#3a3f48}
-.icon{width:46px;height:46px;border:1px solid var(--line);border-radius:14px;display:grid;place-items:center;margin-bottom:45px;color:var(--accent);font-weight:700}
-.card h3{font-family:'Space Grotesk';font-size:22px;margin-bottom:10px}
-.card p{color:var(--muted);font-size:14px}
-.work{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.project{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden}
-.project img{width:100%;height:360px;object-fit:cover;display:block}
-.project-body{padding:22px}
-.project-body small{color:var(--accent);text-transform:uppercase;letter-spacing:1.5px}
-.project-body h3{font-family:'Space Grotesk';font-size:25px;margin:5px 0}
-.project-body p{color:var(--muted);font-size:14px}
-.about{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.about p{color:#aeb4bd;font-size:17px;margin-top:20px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.stat{padding:25px;border:1px solid var(--line);border-radius:20px;background:var(--card)}
-.stat strong{font-family:'Space Grotesk';font-size:35px;display:block}
-.stat span{color:var(--muted);font-size:13px}
-.contact{background:linear-gradient(135deg,#11151a,#0b0c0f);border:1px solid var(--line);border-radius:30px;padding:45px}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:25px}
-input,textarea,select{width:100%;background:#090a0c;border:1px solid var(--line);color:white;border-radius:13px;padding:15px;font:inherit;outline:none}
-textarea{min-height:130px;resize:vertical;grid-column:1/-1}
-.form .full{grid-column:1/-1}
-input:focus,textarea:focus,select:focus{border-color:#5e6772}
-footer{padding:35px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
-.footerin{display:flex;justify-content:space-between;gap:20px}
-.reveal{opacity:0;transform:translateY(22px);transition:.7s ease}
-.reveal.show{opacity:1;transform:none}
-@media(max-width:760px){
- .links,.navin>.btn{display:none}.menu{display:block}
- .hero{padding-top:120px}.hero p{font-size:16px}h1{letter-spacing:-3px}
- .grid,.work,.about{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:15px}
- .project img{height:330px}.form{grid-template-columns:1fr}.form .full{grid-column:auto}
- .footerin{flex-direction:column}.contact{padding:28px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adryvo - Arzaan Khan (Founder)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts: Inter & Reenie Beanie -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Reenie+Beanie&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #080C14;
+      color: #E2E8F0;
+    }
+    .font-signature {
+      font-family: 'Reenie Beanie', cursive;
+    }
+  </style>
 </head>
-<body>
-<nav><div class="container navin">
-<a class="logo" href="#">ADRY<span>VO</span></a>
-<div class="links"><a href="#services">Services</a><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div>
-<a class="btn" href="#contact">Start a Project ↗</a><button class="menu" aria-label="Menu">☰</button>
-</div></nav>
+<body class="bg-[#080C14] text-gray-200 antialiased selection:bg-sky-500 selection:text-white">
 
-<header class="hero"><div class="container reveal">
-<div class="kicker">Creative Advertising Studio</div>
-<h1>Ideas that make<br><em>brands impossible to ignore.</em></h1>
-<p>Adryvo creates bold advertising, social content and campaign concepts that turn products into memorable brand experiences.</p>
-<div class="actions"><a class="btn" href="#work">Explore Our Work ↓</a><a class="btn ghost" href="https://www.instagram.com/adryvo.in/" target="_blank" rel="noopener">Instagram ↗</a></div>
-</div></header>
+  <!-- NAVIGATION BAR -->
+  <header class="border-b border-gray-800/80 bg-[#080C14]/90 sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3">
+        <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24">
+          <path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13.5h-13L12 6.5z"/>
+        </svg>
+        <span class="text-2xl font-bold tracking-tight text-white">Adryvo</span>
+      </a>
 
-<section id="services"><div class="container">
-<div class="section-head reveal"><div><div class="eyebrow">What we do</div><h2>Creative built<br>for attention.</h2></div><p>From a single product visual to a complete campaign, we help brands communicate with clarity and style.</p></div>
-<div class="grid">
-<div class="card reveal"><div class="icon">01</div><h3>Social Ads</h3><p>Scroll-stopping creatives designed for Instagram, Facebook and short-form platforms.</p></div>
-<div class="card reveal"><div class="icon">02</div><h3>Campaigns</h3><p>Big ideas, visual direction and campaign concepts that give brands a consistent voice.</p></div>
-<div class="card reveal"><div class="icon">03</div><h3>Brand Content</h3><p>Product posters, launch creatives, reels concepts and content systems for growing brands.</p></div>
-</div></div></section>
+      <!-- Menu Links -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-400">
+        <a href="#" class="text-white border-b-2 border-sky-400 pb-1">Home</a>
+        <a href="#" class="hover:text-white transition">Services</a>
+        <a href="#" class="hover:text-white transition">Our Work</a>
+        <a href="#" class="hover:text-white transition">About</a>
+        <a href="#" class="hover:text-white transition">Founder</a>
+        <a href="#" class="hover:text-white transition">Contact</a>
+      </nav>
 
-<section id="work"><div class="container">
-<div class="section-head reveal"><div><div class="eyebrow">Selected work</div><h2>Made for brands.</h2></div><p>Early Adryvo concepts — built to demonstrate how products can become strong visual stories.</p></div>
-<div class="work">
-<article class="project reveal"><img src="22north.jpg" alt="22 North perfume advertising concept"><div class="project-body"><small>Advertising Concept</small><h3>22° North</h3><p>Premium fragrance campaign direction with a dark, sophisticated visual language.</p></div></article>
-<article class="project reveal"><img src="footwear.jpg" alt="Footwear advertising concept"><div class="project-body"><small>Product Campaign</small><h3>Fresh Style</h3><p>Clean, energetic footwear creative focused on everyday comfort and product appeal.</p></div></article>
-</div></div></section>
-
-<section id="about"><div class="container about">
-<div class="reveal"><div class="eyebrow">About Adryvo</div><h2>Creativity meets brands.</h2><p>Adryvo is a young creative advertising studio focused on making modern brands look sharper, communicate better and stand out online.</p><p>Our long-term vision is to combine creative thinking with AI and technology to make advertising faster and smarter.</p></div>
-<div class="stats reveal"><div class="stat"><strong>01</strong><span>Creative-first approach</span></div><div class="stat"><strong>24/7</strong><span>Ideas don't follow office hours</span></div><div class="stat"><strong>AI+</strong><span>Technology-driven future</span></div><div class="stat"><strong>∞</strong><span>Room to create</span></div></div>
-</div></section>
-
-<section id="contact"><div class="container"><div class="contact reveal">
-<div class="eyebrow">Start a project</div><h2>Let's create something<br>worth scrolling for.</h2>
-<form class="form" onsubmit="sendMail(event)">
-<input id="name" placeholder="Your name" required><input id="brand" placeholder="Brand name">
-<input id="email" type="email" placeholder="Email" required><select id="service"><option>Choose a service</option><option>Social Ads</option><option>Campaign</option><option>Brand Content</option><option>Other</option></select>
-<textarea id="message" placeholder="Tell us about your project..." required></textarea>
-<button class="btn full" type="submit">Send Project Brief ↗</button>
-</form>
-</div></div></section>
-
-<footer><div class="container footerin"><span>© 2026 Adryvo. All rights reserved.</span><span><a href="https://www.instagram.com/adryvo.in/" target="_blank" rel="noopener">Instagram ↗</a></span></div></footer>
-
-<script>
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-function sendMail(e){
- e.preventDefault();
- const n=document.getElementById('name').value,b=document.getElementById('brand').value;
- const m=document.getElementById('message').value;
- const s=document.getElementById('service').value;
- const body=encodeURIComponent(`Name: ${n}\nBrand: ${b}\nService: ${s}\n\nProject:\n${m}`);
- window.location.href=`mailto:https://forms.gle/L3QdUvFQ2afkF3qm6?subject=New Adryvo Project — ${encodeURIComponent(b||n)}&body=${body}`;
-}
-</script>
-
-<section id="contact" class="contact-section">
-  <div class="contact-card">
-    <p class="eyebrow">LET'S CREATE</p>
-    <h2>Have a brand that needs attention?</h2>
-    <p>Tell us what you're building. Adryvo turns ideas into creative advertising.</p>
-    <div class="contact-actions">
-      <a class="btn primary" href="mailto:hello@adryvo.in?subject=Adryvo%20Project%20Inquiry">Contact Adryvo</a>
-      <a class="btn secondary" href="https://www.instagram.com/adryvo.in/" target="_blank" rel="noopener">Instagram</a>
+      <!-- CTA Button -->
+      <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-700 text-sm font-medium text-gray-200 hover:border-sky-400 hover:text-sky-400 transition-all">
+        Start a Project <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
     </div>
-  </div>
-</section>
+  </header>
 
-<style>
-.contact-section{padding:72px 20px 90px;max-width:1100px;margin:auto}
-.contact-card{border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:48px 28px;background:rgba(255,255,255,.035);text-align:center}
-.contact-card h2{font-size:clamp(32px,6vw,60px);line-height:1.05;margin:10px 0 16px}
-.contact-card p:not(.eyebrow){opacity:.72;max-width:620px;margin:0 auto 26px}
-.contact-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.contact-actions .btn{display:inline-block;padding:13px 20px;border-radius:999px;text-decoration:none;font-weight:700}
-.contact-actions .primary{background:#fff;color:#111}
-.contact-actions .seconda<ry{border:1px solid rgba(255,255,255,.2);color:inherit}
-</style>
-<style>
-.contact-section{padding:72px 20px 90px;max-width:1100px;margin:auto}
-.contact-card{border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:48px 28px;background:rgba(255,255,255,.035);text-align:center}
-.contact-card h2{font-size:clamp(32px,6vw,60px);line-height:1.05;margin:10px 0 16px}
-.contact-card p:not(.eyebrow){opacity:.72;max-width:620px;margin:0 auto 26px}
-.contact-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.contact-actions .btn{display:inline-block;padding:13px 20px;border-radius:999px;text-decoration:none;font-weight:700}
-.contact-actions .primary{background:#fff;color:#111}
-.contact-actions .secondary{border:1px solid rgba(255,255,255,.2);color:inherit}
-</style>
 
-<style>
-.contact-section{padding:72px 20px 90px;max-width:1100px;margin:auto}
-.contact-card{border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:48px 28px;background:rgba(255,255,255,.035);text-align:center}
-.contact-card h2{font-size:clamp(32px,6vw,60px);line-height:1.05;margin:10px 0 16px}
-.contact-card p:not(.eyebrow){opacity:.72;max-width:620px;margin:0 auto 26px}
-.contact-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.contact-actions .btn{display:inline-block;padding:13px 20px;border-radius:999px;text-decoration:none;font-weight:700}
-.contact-actions .primary{background:#fff;color:#111}
-.contact-actions .secondary{border:1px solid rgba(255,255,255,.2);color:inherit}
-</style>
+  <!-- HERO SECTION: MEET THE FOUNDER -->
+  <section class="relative border-b border-gray-800/80 overflow-hidden py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Text Info (Left) -->
+      <div class="lg:col-span-7 z-10">
+        <span class="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-3 block">
+          MEET THE FOUNDER
+        </span>
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-none mb-3">
+          ARZAAN <span class="text-[#38BDF8]">KHAN</span>
+        </h1>
+        <p class="text-lg text-gray-400 font-medium mb-6">Founder — Adryvo</p>
+        
+        <p class="text-gray-300 text-base sm:text-lg leading-relaxed max-w-xl mb-10">
+          I started Adryvo with a simple vision — to help growing brands turn their ideas into creative advertising that people remember.
+        </p>
 
-<a
-href="https://bucket.appilix.com/app-apk-835a7dd8464f448d87cff8e5a0db5f47-1790007583.apk"
-download
-style="
-position:fixed;
-bottom:20px;
-right:20px;
-padding:14px 20px;
-border:none;
-border-radius:30px;
-background:#fff;
-color:#000;
-font-weight:700;
-cursor:pointer;
-z-index:9999;
-text-decoration:none;
-">
-📱 Download Adryvo App
-</a>
+        <!-- Dynamic Badges -->
+        <div class="flex flex-wrap items-center gap-6 pt-6 border-t border-gray-800 text-sm font-medium text-gray-300">
+          <div class="flex items-center gap-2">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-sky-400"></i>
+            <span>Creative Thinker</span>
+          </div>
+          <span class="hidden sm:inline text-gray-700">|</span>
+          <div class="flex items-center gap-2">
+            <i data-lucide="target" class="w-5 h-5 text-sky-400"></i>
+            <span>Brand Builder</span>
+          </div>
+          <span class="hidden sm:inline text-gray-700">|</span>
+          <div class="flex items-center gap-2">
+            <i data-lucide="rocket" class="w-5 h-5 text-sky-400"></i>
+            <span>Always Evolving</span>
+          </div>
+        </div>
+      </div>
 
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/adryvo-website/sw.js");
-  });
-}
-</script>
+      <!-- Photo Frame (Right) -->
+      <div class="lg:col-span-5 relative flex justify-center items-center">
+        <!-- Giant Logo Background Graphic -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+          <svg class="w-full h-full text-gray-100 fill-current max-w-md" viewBox="0 0 24 24">
+            <path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13.5h-13L12 6.5z"/>
+          </svg>
+        </div>
 
+        <!-- Founder Image -->
+        <div class="relative z-10 max-w-sm sm:max-w-md">
+          <!-- 💡 APNI PHOTO KA FILE NAME YA LINK YEHAN DALEIN -->
+          <img src="your-photo.png" alt="Arzaan Khan" class="w-full h-auto drop-shadow-[0_20px_50px_rgba(56,189,248,0.15)]">
+        </div>
+
+        <!-- Floating Signature Graphics -->
+        <div class="absolute right-2 bottom-4 z-20 text-right pointer-events-none">
+          <div class="font-signature text-5xl sm:text-6xl text-sky-400 -rotate-6 tracking-wide drop-shadow-md">
+            Arzaan Khan
+          </div>
+          <span class="text-[10px] tracking-widest text-gray-400 uppercase font-semibold block mt-[-8px]">
+            FOUNDER ADRYVO
+          </span>
+          <div class="w-8 h-0.5 bg-sky-400 ml-auto mt-1"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ABOUT FOUNDER & SKILLS GRID SECTION -->
+  <section class="py-16 lg:py-24 max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      
+      <!-- Col 1: Bio & Social Links -->
+      <div class="lg:col-span-4 flex flex-col justify-between">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-2 block">
+            ABOUT FOUNDER
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight mb-6">
+            Turning Ideas Into <span class="text-[#38BDF8]">Impactful Brands.</span>
+          </h2>
+          <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-6">
+            I'm Arzaan Khan, the founder of Adryvo. I believe in the power of creativity, strategy and technology to help brands grow. My goal is to create advertising that not only looks good, but also builds real connections and drives results.
+          </p>
+          <div class="font-signature text-4xl text-gray-300 mb-8">
+            Arzaan Khan
+          </div>
+        </div>
+
+        <!-- Social Media Buttons -->
+        <div class="flex items-center gap-3">
+          <a href="#" class="w-10 h-10 rounded-lg bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-sky-400 transition">
+            <i data-lucide="instagram" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-lg bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-sky-400 transition">
+            <i data-lucide="linkedin" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-lg bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-sky-400 transition">
+            <i data-lucide="phone" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-lg bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-sky-400 transition">
+            <i data-lucide="mail" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Info & Skills Checklists -->
+      <div class="lg:col-span-4 bg-gray-950/50 p-8 rounded-2xl border border-gray-800/80 flex flex-col justify-between">
+        <div>
+          <div class="space-y-6">
+            <!-- Info Item -->
+            <div class="flex items-start gap-4">
+              <div class="p-2.5 rounded-lg bg-gray-900 border border-gray-800 text-sky-400">
+                <i data-lucide="user" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Name</span>
+                <p class="text-white font-semibold text-sm">Arzaan Khan</p>
+              </div>
+            </div>
+
+            <!-- Info Item -->
+            <div class="flex items-start gap-4">
+              <div class="p-2.5 rounded-lg bg-gray-900 border border-gray-800 text-sky-400">
+                <i data-lucide="briefcase" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Role</span>
+                <p class="text-white font-semibold text-sm">Founder — Adryvo</p>
+              </div>
+            </div>
+
+            <!-- Info Item -->
+            <div class="flex items-start gap-4">
+              <div class="p-2.5 rounded-lg bg-gray-900 border border-gray-800 text-sky-400">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Location</span>
+                <p class="text-white font-semibold text-sm">India</p>
+              </div>
+            </div>
+
+            <!-- Info Item -->
+            <div class="flex items-start gap-4">
+              <div class="p-2.5 rounded-lg bg-gray-900 border border-gray-800 text-sky-400">
+                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">Education</span>
+                <p class="text-white font-semibold text-sm">Currently Pursuing Higher Studies</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full h-px bg-gray-800 my-8"></div>
+
+          <!-- Skills Matrix -->
+          <div>
+            <div class="flex items-center gap-2 text-white font-semibold text-sm mb-4">
+              <i data-lucide="code-2" class="w-4 h-4 text-sky-400"></i>
+              <span>Skills</span>
+            </div>
+            <div class="grid grid-cols-2 gap-y-3 gap-x-2 text-xs text-gray-300 font-medium">
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-sky-400"></i>
+                <span>Creative Design</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-sky-400"></i>
+                <span>Brand Strategy</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-sky-400"></i>
+                <span>Video Editing</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-sky-400"></i>
+                <span>Content Creation</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-sky-400"></i>
+                <span>Digital Marketing</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-sky-400"></i>
+                <span>AI Tools & Automation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 3: Quote Card -->
+      <div class="lg:col-span-4 bg-gradient-to-b from-gray-900/60 to-gray-950 p-8 rounded-2xl border border-gray-800 flex flex-col justify-between relative overflow-hidden">
+        <div class="text-sky-400 text-6xl font-serif leading-none select-none">“</div>
+        <blockquote class="text-gray-300 text-lg font-light italic leading-relaxed my-6 z-10">
+          "I'm not just building an agency, I'm building a platform for creativity, where ideas meet technology and brands grow beyond limits."
+        </blockquote>
+        <div class="border-t border-gray-800 pt-6">
+          <div class="w-8 h-1 bg-sky-400 mb-3"></div>
+          <h4 class="text-white font-bold text-base">Arzaan Khan</h4>
+          <p class="text-xs text-gray-400">Founder, Adryvo</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="border-t border-gray-800/80 bg-[#05080E] text-xs text-gray-400">
+    <div class="max-w-7xl mx-auto px-6 py-10">
+      
+      <!-- Top Footer Row -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-gray-800/60">
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24">
+            <path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13.5h-13L12 6.5z"/>
+          </svg>
+          <div>
+            <span class="text-base font-bold text-white block">Adryvo</span>
+            <span class="text-[11px] text-gray-400">Where Creativity Meets Brands.</span>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-6 text-gray-400 font-medium">
+          <a href="#" class="hover:text-white transition">Home</a>
+          <a href="#" class="hover:text-white transition">Services</a>
+          <a href="#" class="hover:text-white transition">Our Work</a>
+          <a href="#" class="hover:text-white transition">About</a>
+          <a href="#" class="hover:text-white transition">Founder</a>
+          <a href="#" class="hover:text-white transition">Contact</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <span class="text-gray-300 font-medium">Let's Create Something Great</span>
+          <a href="#" class="w-8 h-8 rounded-full bg-gray-900 border border-gray-700 flex items-center justify-center text-white hover:border-sky-400 transition">
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bottom Copyright Row -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-gray-400">
+        <p>© 2026 Adryvo. All rights reserved.</p>
+        <p class="space-x-2">
+          <span>Creative Advertising</span> /
+          <span>Brand Building</span> /
+          <span>Digital Growth</span>
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Lucide Script Initialization -->
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
-</html>
+             </html>
+             
