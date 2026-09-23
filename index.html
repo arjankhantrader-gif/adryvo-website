@@ -33,6 +33,34 @@
       font-family: 'Reenie Beanie', cursive;
     }
   </style>
+<!-- Firebase Authentication & Google Login -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDvyvczpkLnToHRqTS12GNkluUBg1fXNQ4",
+    authDomain: "adryvo.firebaseapp.com",
+    projectId: "adryvo",
+    storageBucket: "adryvo.firebasestorage.app",
+    messagingSenderId: "814950964069",
+    appId: "1:814950964069:web:9609bcaecmb4f7cdo95f8c",
+    measurementId: "G-MMYMJ1NQ7J"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  window.loginWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        alert("Welcome " + result.user.displayName + "!");
+      })
+      .catch((error) => {
+        alert("Login failed: " + error.message);
+      });
+
 </head>
 <body class="bg-[#080C14] text-gray-200 antialiased selection:bg-sky-500 selection:text-white">
 
@@ -61,11 +89,15 @@
       <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-700 text-sm font-medium text-gray-200 hover:border-sky-400 hover:text-sky-400 transition-all">
         Start a Project <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </a>
+    <button onclick="loginWithGoogle()" class="px-4 py-2 bg-white text-black font-semibold rounded-lg flex items-center gap-2 shadow cursor-pointer text-sm hover:bg-gray-100 transition">
+  <img src="https://www.google.com/favicon.ico" class="w-4 h-4" alt="Google">
+  Sign in
+</button>
+    
     </div>
   </header>
 
-
-  <!-- HERO SECTION: MEET THE FOUNDER -->
+    <!-- HERO SECTION: MEET THE FOUNDER -->
   <section class="relative border-b border-gray-800/80 overflow-hidden py-16 lg:py-24">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       
