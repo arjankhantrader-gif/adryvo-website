@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <!-- Social Share & SEO Meta Tags -->
-<title>ADRYVO | Where Creativity Meets Brands</title>
-<meta name="description" content="Official portfolio of ADRYVO. Digital marketing, content creation, video editing & brand strategy.">
-<meta property="og:title" content="ADRYVO | Where Creativity Meets Brands">
-<meta property="og:description" content="Check out our official portfolio for services, agency work, and contact details.">
-<meta property="og:type" content="website">
+  <title>ADRYVO | Where Creativity Meets Brands</title>
+  <meta name="description" content="Official portfolio of ADRYVO. Digital marketing, content creation, video editing & brand strategy.">
+  <meta property="og:title" content="ADRYVO | Where Creativity Meets Brands">
+  <meta property="og:description" content="Check out our official portfolio for services, agency work, and contact details.">
+  <meta property="og:type" content="website">
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,46 +33,47 @@
       font-family: 'Reenie Beanie', cursive;
     }
   </style>
-<!-- Firebase Authentication & Google Login -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDyyvezpkinTmlRqTS12GNn1uu8g1fXNQ4",
-    authDomain: "adryvo.firebaseapp.com",
-    projectId: "adryvo",
-    storageBucket: "adryvo.firebasestorage.app",
-    messagingSenderId: "814950964069",
-    appId: "1:814950964069:web:0608bzaecmb4f7cdo95f8c",
-    measurementId: "G-MMYMJ1NQ7J"
-  };
+  <!-- Firebase Authentication & Google Login -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
+    const firebaseConfig = {
+      apiKey: "AIzaSyDyyvezpkinTmlRqTS12GNn1uu8g1fXNQ4",
+      authDomain: "adryvo.firebaseapp.com",
+      projectId: "adryvo",
+      storageBucket: "adryvo.firebasestorage.app",
+      messagingSenderId: "814950964069",
+      appId: "1:814950964069:web:0608bzaecmb4f7cdo95f8c",
+      measurementId: "G-MMYMJ1NQ7J"
+    };
 
-  // Redirect se wapas aane par user login details handle karna
-  getRedirectResult(auth)
-    .then((result) => {
-      if (result && result.user) {
-        alert("Welcome " + result.user.displayName + "!");
-      }
-    })
-    .catch((error) => {
-      alert("Login error: " + error.message);
-    });
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
 
-  // Event Listener direct Button par attach karna
-  document.addEventListener("DOMContentLoaded", () => {
-    const loginBtn = document.getElementById("google-login-btn");
-    if (loginBtn) {
-      loginBtn.addEventListener("click", () => {
-        signInWithRedirect(auth, provider);
+    // Redirect se wapas aane par user login details handle karna
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result && result.user) {
+          alert("Welcome " + result.user.displayName + "!");
+        }
+      })
+      .catch((error) => {
+        alert("Login error: " + error.message);
       });
-    }
-  });
-</script>
+
+    // Event Listener direct Button par attach karna (Fixed ID approach)
+    document.addEventListener("DOMContentLoaded", () => {
+      const loginBtn = document.getElementById("google-login-btn");
+      if (loginBtn) {
+        loginBtn.addEventListener("click", () => {
+          signInWithRedirect(auth, provider);
+        });
+      }
+    });
+  </script>
 </head>
 <body class="bg-[#080C14] text-gray-200 antialiased selection:bg-sky-500 selection:text-white">
 
@@ -97,19 +98,22 @@
         <a href="#" class="hover:text-white transition">Contact</a>
       </nav>
 
-      <!-- CTA Button -->
-      <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-700 text-sm font-medium text-gray-200 hover:border-sky-400 hover:text-sky-400 transition-all">
-        Start a Project <i data-lucide="arrow-right" class="w-4 h-4"></i>
-      </a>
-    <button onclick="loginWithGoogle()" class="px-4 py-2 bg-white text-black font-semibold rounded-lg flex items-center gap-2 shadow cursor-pointer text-sm hover:bg-gray-100 transition">
-  <img src="https://www.google.com/favicon.ico" class="w-4 h-4" alt="Google">
-  Sign in
-</button>
-    
+      <!-- CTA Button & Sign in -->
+      <div class="flex items-center gap-4">
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-700 text-sm font-medium text-gray-200 hover:border-sky-400 hover:text-sky-400 transition-all">
+          Start a Project <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+        <!-- Fixed Button with ID -->
+        <button id="google-login-btn" class="px-4 py-2 bg-white text-black font-semibold rounded-lg flex items-center gap-2 shadow cursor-pointer text-sm hover:bg-gray-100 transition">
+          <img src="https://www.google.com/favicon.ico" class="w-4 h-4" alt="Google">
+          Sign in
+        </button>
+      </div>
+
     </div>
   </header>
 
-    <!-- HERO SECTION: MEET THE FOUNDER -->
+  <!-- HERO SECTION: MEET THE FOUNDER -->
   <section class="relative border-b border-gray-800/80 overflow-hidden py-16 lg:py-24">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       
@@ -157,8 +161,7 @@
 
         <!-- Founder Image -->
         <div class="relative z-10 max-w-sm sm:max-w-md">
-          <!-- 💡 APNI PHOTO KA FILE NAME YA LINK YEHAN DALEIN -->
-       <img src="https://i.ibb.co/gbNx6vtj/founderpng.png" alt="Arzaan Khan" class="w-full h-auto drop-shadow-[0_20px_50px_rgba(56,189,248,0.15)]">
+          <img src="https://i.ibb.co/gbNx6vtj/founderpng.png" alt="Arzaan Khan" class="w-full h-auto drop-shadow-[0_20px_50px_rgba(56,189,248,0.15)]">
         </div>
 
         <!-- Floating Signature Graphics -->
@@ -175,7 +178,6 @@
 
     </div>
   </section>
-
 
   <!-- ABOUT FOUNDER & SKILLS GRID SECTION -->
   <section class="py-16 lg:py-24 max-w-7xl mx-auto px-6">
@@ -209,10 +211,9 @@
             <i data-lucide="phone" class="w-5 h-5"></i>
           </a>
           
-<a href="mailto:arjankhantrader@gmail.com" class="w-10 h-10 rounded-lg bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-sky-400 hover:border-sky-400/50 transition">
-  <i data-lucide="mail" class="w-5 h-5"></i>
-</a>
-
+          <a href="mailto:arjankhantrader@gmail.com" class="w-10 h-10 rounded-lg bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-sky-400 hover:border-sky-400/50 transition">
+            <i data-lucide="mail" class="w-5 h-5"></i>
+          </a>
         </div>
 
       </div>
@@ -319,31 +320,32 @@
 
     </div>
   </section>
-<!-- CONTACT SECTION -->
-<section id="contact" class="py-16 lg:py-24 max-w-7xl mx-auto px-6">
-  <div class="max-w-2xl mx-auto bg-gray-900/50 p-8 rounded-2xl border border-gray-800">
-    <h2 class="text-3xl font-extrabold text-white mb-2 text-center">Get In Touch</h2>
-    <p class="text-gray-400 text-center text-sm mb-8">Have a project in mind? Let's build something awesome together.</p>
-    
-    <form action="https://formspree.io/f/xoevwvae" method="POST" class="space-y-4">
-      <div>
-        <label class="block text-xs font-medium text-gray-400 mb-1">YOUR NAME</label>
-        <input type="text" name="name" required placeholder="John Doe" class="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-400 transition text-sm">
-      </div>
-      <div>
-        <label class="block text-xs font-medium text-gray-400 mb-1">YOUR EMAIL</label>
-        <input type="email" name="email" required placeholder="john@example.com" class="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-400 transition text-sm">
-      </div>
-      <div>
-        <label class="block text-xs font-medium text-gray-400 mb-1">YOUR MESSAGE</label>
-        <textarea name="message" rows="4" required placeholder="Tell us about your project..." class="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-400 transition text-sm"></textarea>
-      </div>
-      <button type="submit" class="w-full py-3.5 bg-sky-400 hover:bg-sky-500 text-gray-950 font-bold rounded-lg transition text-sm">
-        Send Message
-      </button>
-    </form>
-  </div>
-</section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="py-16 lg:py-24 max-w-7xl mx-auto px-6">
+    <div class="max-w-2xl mx-auto bg-gray-900/50 p-8 rounded-2xl border border-gray-800">
+      <h2 class="text-3xl font-extrabold text-white mb-2 text-center">Get In Touch</h2>
+      <p class="text-gray-400 text-center text-sm mb-8">Have a project in mind? Let's build something awesome together.</p>
+      
+      <form action="https://formspree.io/f/xoevwvae" method="POST" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-gray-400 mb-1">YOUR NAME</label>
+          <input type="text" name="name" required placeholder="John Doe" class="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-400 transition text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-gray-400 mb-1">YOUR EMAIL</label>
+          <input type="email" name="email" required placeholder="john@example.com" class="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-400 transition text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-gray-400 mb-1">YOUR MESSAGE</label>
+          <textarea name="message" rows="4" required placeholder="Tell us about your project..." class="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-400 transition text-sm"></textarea>
+        </div>
+        <button type="submit" class="w-full py-3.5 bg-sky-400 hover:bg-sky-500 text-gray-950 font-bold rounded-lg transition text-sm">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </section>
    
   <!-- FOOTER -->
   <footer class="border-t border-gray-800/80 bg-[#05080E] text-xs text-gray-400">
@@ -396,5 +398,5 @@
     lucide.createIcons();
   </script>
 </body>
-             </html>
-             
+                </html>
+                
