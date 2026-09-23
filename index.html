@@ -36,7 +36,7 @@
 <!-- Firebase Authentication & Google Login -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithRedirect } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDyyvezpkinTmlRqTS12GNn1uu8g1fXNQ4",
@@ -53,14 +53,9 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstati
   const provider = new GoogleAuthProvider();
 
   window.loginWithGoogle = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        alert("Welcome " + result.user.displayName + "!");
-      })
-      .catch((error) => {
-        alert("Login failed: " + error.message);
-      });
+    signInWithRedirect(auth, provider);
   };
+
 </script>
 </head>
 <body class="bg-[#080C14] text-gray-200 antialiased selection:bg-sky-500 selection:text-white">
